@@ -1,0 +1,67 @@
+| Layer      | Tool/Service      | Purpose                        |
+| ---------- | ----------------- | ------------------------------ |
+| Frontend   | Vite + React      | Web UI (built to static files) |
+| Backend    | FastAPI           | API + application logic        |
+| Containers | Docker            | Environment packaging          |
+| CI/CD      | GitHub Actions    | Automated build + deploy       |
+| Hosting    | AWS S3 (frontend) | Host static frontend files     |
+| Hosting    | AWS EC2 (backend) | Run FastAPI container          |
+| Storage    | GitHub Secrets    | Store AWS credentials & config |
+
+
+🛠️ Deployment Plan
+1. Set Up Project
+Organize code into /frontend and /backend folders
+Add a Dockerfile in /backend for FastAPI
+Ensure /frontend has a proper Vite build script (npm run build)
+
+
+2. Prepare AWS Infrastructure
+
+Frontend
+Create an S3 bucket for static website hosting
+Enable public read access (or use CloudFront for CDN + HTTPS)
+(Optional) Set up CloudFront + Route 53 for a custom domain
+
+Backend
+Launch an EC2 instance
+Choose a Linux AMI (Amazon Linux 2 or Ubuntu)
+Install Docker and configure SSH access
+Open necessary ports (e.g., 8000, 22)
+(Optional) Set up Elastic IP for consistent public IP
+
+3. Set Up GitHub Secrets
+Add the following to your GitHub repository secrets:
+AWS_ACCESS_KEY_ID / AWS_SECRET_ACCESS_KEY
+AWS_REGION
+EC2_HOST – public IP or DNS
+EC2_SSH_KEY – your private key (in PEM format) for SSH access
+
+4. Create GitHub Actions Workflows
+Frontend Workflow
+Trigger on changes to /frontend
+Build the Vite app
+Upload dist/ folder to S3 bucket
+Backend Workflow
+Trigger on changes to /backend
+Build Docker image
+Push to Docker registry (optional)
+SSH into EC2 and run the new container
+
+5. Testing and Monitoring
+Test the frontend via the S3 or CloudFront URL
+Access the backend via the EC2 public IP and test API endpoints
+Add logging/monitoring with tools like CloudWatch, Logtail, etc.
+
+6. Next Steps (Optional Enhancements)
+Use ECR instead of Docker Hub
+Replace EC2 with Elastic Beanstalk, ECS, or Fargate
+Use OpenID Connect (OIDC) for more secure GitHub → AWS auth
+Add a custom domain via Route 53 and enable HTTPS
+Explore Kubernetes (EKS) for auto-scaling containers in the future
+
+✅ Goals Achieved
+Automated CI/CD from GitHub to AWS
+Frontend hosted on S3 (serverless + scalable)
+Backend deployed in Docker container on EC2
+Reusable pipeline for future projects
