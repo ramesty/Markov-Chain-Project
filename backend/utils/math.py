@@ -11,11 +11,28 @@ def monte_carlo(trns_prob_mtx):
     pi[start_state] = 1
     A = trns_prob_mtx
 
-    for i in range(steps):
-        curr_state = np.random.choice([0,1,2, 3, 4], p = A.loc[states_mapping[curr_state]])
+    for _ in range(steps):
+        curr_state = np.random.choice([0, 1, 2, 3, 4], p = A.loc[states_mapping[curr_state]])
         pi[curr_state]+=1
 
     return pi
+
+def random_walk(trns_prob_mtx, curr_state, steps):
+
+    prob = 1
+    rnd_wlk = [f'State: {curr_state}, probability: {prob}']
+
+    for _ in range(steps):
+
+        states = trns_prob_mtx.columns.tolist()
+        probs = trns_prob_mtx.loc[curr_state]
+        next_state = np.random.choice(states, p=probs)
+        prob *= probs[next_state]
+
+        rnd_wlk.append(f' --> State: {curr_state}, probability: {prob}')
+
+    return "".join(rnd_wlk), prob
+
 
 
 # Matrix Multiplication

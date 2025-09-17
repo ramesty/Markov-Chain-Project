@@ -10,11 +10,9 @@ async def root():
 @app.get("/stocks/{ticker_name}/{period}")
 async def ticker(ticker_name: str, period: str):
 
-    transition_matrix, ssd_vector = run_analysis(ticker_name, period)
+    # return run_analysis(ticker_name, period)
 
-    return {
-        "transition matrix" : transition_matrix,
-        "stead state distribution vector" : ssd_vector
-    }
+    return run_analysis(ticker_name, period)
+
 
     
