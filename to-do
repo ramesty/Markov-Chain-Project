@@ -1,0 +1,20 @@
+I want to finish more or less the frontend
+    - reorganize so that left has navbar, and matrices on the right
+    - matrices component should take up the width of the parent
+    - add a button to a navbar
+
+Button should trigger a hook that calls the backend
+
+Backend call should return three json objects, they should be displayed on the frontend
+    - want a transition Probability matrix
+    - stead state distribution vector
+    - random markov walk
+
+Once this is complete, we will need to create a frontend image and a backend image
+and ensure communication between running containers
+
+Once I have communicating containers, I can look to deploy onto the cloud
+
+Frontend ↔ Backend
+Your Vite app will make HTTP requests to the backend (e.g., https://api.example.com/data)
+They can live on different services as long as the backend allows cross-origin requests (CORS headers)

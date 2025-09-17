@@ -2,10 +2,10 @@ import CustomOutput from "../components/CustomOutput"
 
 function OutputLayout(){
     return(
-        <div className="w-full h-full border border-white grid grid-cols-3 gap-4 py-4">
-            <div className="border border-white"><CustomOutput/></div>
-            <div className="border border-white"><CustomOutput/></div>
-            <div className="border border-white"><CustomOutput/></div>
+        <div className="h-full border border-white grid grid-rows-3 px-2">
+            <CustomOutput title="Transition Probability Matrix"/>
+            <CustomOutput title="Steady State Distribution"/>
+            <CustomOutput title="Random Markov Walk"/>
         </div>
     )
 }
