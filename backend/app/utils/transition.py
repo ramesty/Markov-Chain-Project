@@ -10,4 +10,6 @@ def define_transition(data, row, transitions_df):
 
 # Returns Transition Probability Matrix
 def get_transition_matrix(transitions_df):
-    return transitions_df.div(transitions_df.sum(axis=1), axis=0)
+    matrix = transitions_df.div(transitions_df.sum(axis=1), axis=0)
+    matrix = matrix.fillna(0)  # Replace NaNs with 0
+    return matrix
