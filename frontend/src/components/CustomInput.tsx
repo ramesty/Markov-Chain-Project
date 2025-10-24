@@ -1,12 +1,18 @@
 import CustomTitle from "./CustomTitle"
 
-function CustomInput(){
+type CustomInputProps = {
+    onUpdate: (value: string) => void;
+};
+
+function CustomInput({onUpdate} : CustomInputProps){
+
     return(
-        <div className="border border-white p-4">
+        <div className="bg-blue-500 rounded-sm p-4">
             <div>
                 <CustomTitle title="Ticker"/>
             </div>
-            <input type="text" className="shadow-md rounded bg-white text-black dark:bg-gray-700 dark:text-white"/>
+            <input type="text" className="shadow-md p-1 w-full rounded bg-white text-black dark:bg-gray-700 dark:text-white"
+            onChange={(e) => onUpdate(e.target.value)}/>
         </div>
     )
 }

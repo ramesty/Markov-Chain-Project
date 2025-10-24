@@ -1,15 +1,35 @@
 import CustomTitle from "./CustomTitle"
 
-function CustomDropdown( {title} : {title:string} ){
-    return(
-        <div className="border border-white p-4">
-            <CustomTitle title={title}/>
-            <select className="w-full shadow-md rounded bg-white text-black dark:bg-gray-700 dark:text-white">
-                <option value="">Select an option</option>
-                <option value="one">Option One</option>
-                <option value="two">Option Two</option>
-            </select>
-        </div>
-    )
+type Option = {
+  value: string;
+  label: string;
+};
+
+type CustomDropdownProps = {
+  title: string;
+  options: Option[];
+  onSelect: (value: string) => void;
+};
+
+function CustomDropdown({ title, options, onSelect }: CustomDropdownProps) {
+  return (
+    <div className="bg-blue-500 rounded-sm p-4">
+        
+        <CustomTitle title={title} />
+        <select
+            className="w-full p-1 shadow-md rounded bg-white text-black dark:bg-gray-700 dark:text-white"
+            onChange={(e) => onSelect(e.target.value)}
+        >
+
+        {options.map(({ value, label }) => (
+            <option key={value} value={value}>
+            {label}
+            </option>
+        ))}
+
+        </select>
+    </div>
+  );
 }
-export default CustomDropdown
+
+export default CustomDropdown;

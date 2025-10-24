@@ -59,8 +59,8 @@ def run_analysis( ticker_val, period):
 
 
     result = {
-        "transition_matrix": transition_matrix,
-        "steady_state_vector": steady_state_vector,
+        "transition_matrix": transition_matrix.round(3),
+        "steady_state_vector": steady_state_vector.round(3),
         "random_walk": rnd_wlk
     }
 

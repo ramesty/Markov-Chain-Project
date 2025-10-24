@@ -29,7 +29,7 @@ def random_walk(trns_prob_mtx, curr_state, steps):
         next_state = np.random.choice(states, p=probs)
         prob *= probs[next_state]
 
-        rnd_wlk.append(f' --> State: {curr_state}, probability: {prob}')
+        rnd_wlk.append(f' --> State: {curr_state}, probability: {round(prob, 3)}')
 
     return "".join(rnd_wlk), prob
 

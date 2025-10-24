@@ -1,4 +1,4 @@
-import { useState, useEffect, createContext } from "react";
+import { useState, createContext } from "react";
 import type { ReactNode } from "react";
 import type { ApiResponse, DataContextType } from "../types/api";
 import { fetchDataFromApi } from "../api/fetchStockData";
@@ -10,22 +10,31 @@ type DataProviderProps = { children: ReactNode };
 export const DataProvider = ({ children }: DataProviderProps) => {
   
     const [data, setData] = useState<ApiResponse | null>(null);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const [showError, setShowError] = useState(true);
     const [inputTicker, setInputTicker] = useState<string | null>(null);
     const [inputPeriod, setInputPeriod] = useState<string | null>(null);
+    const [inputWalk, setInputWalk] = useState<string | null>(null);
 
     const updateInputTicker = (tkr: string) => {
-        console.log(inputTicker)
         setInputTicker(tkr)
     }
 
     const updateInputPeriod = (prd : string) => {
-        console.log(inputPeriod)
         setInputPeriod(prd)
     }
 
-    const fetchData = async (url: string) => {
+    const updateInputWalk = (wlk : string) => {
+        setInputWalk(wlk)
+    }
+
+    const updateModal = (bool : boolean) => {
+        setShowError(bool)
+    }
+
+    const fetchData = async () => {
+        const url = `http://localhost:8000/stocks/${inputTicker}/${inputPeriod}`;
         setLoading(true);
         setError(null);
         try {
@@ -33,20 +42,14 @@ export const DataProvider = ({ children }: DataProviderProps) => {
             setData(result);
         } catch (err) {
             setError((err as Error).message);
+            updateModal(true)
         } finally {
             setLoading(false);
         }
     };
 
-    useEffect(() => {
-        if (inputTicker && inputPeriod) {
-            const url = `http://localhost:8000/stocks/${inputTicker}/${inputPeriod}`;
-            fetchData(url);
-        }
-    }, [inputTicker, inputPeriod]);
-
   return (
-    <DataContext.Provider value={{ data, loading, error, fetchData, updateInputPeriod, updateInputTicker }}>
+    <DataContext.Provider value={{ data, loading, error, showError, fetchData, updateInputPeriod, updateInputTicker, updateInputWalk, updateModal }}>
         {children}
     </DataContext.Provider>
   );
