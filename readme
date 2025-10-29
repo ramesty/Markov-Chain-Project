@@ -1,0 +1,34 @@
+Navigating Folders
+
+src/
+
+    api/
+        fetchStockData.tsx
+        - represents actual request made to the server.
+        - If successful, stores in ApiResponseItem
+
+    components/
+        - Main components for our app
+        CustomButton
+        CustomDropdown
+        CustomInput
+        CustomTitle
+        ErrorModal
+        Loading
+        SteadyStateVector
+        TransitionMatrix
+
+    context/
+        AppContext.tsx
+        - Defines all the states that will be used throughout the app
+        - Wrap our home page, so we can access these states from anywhere
+
+    hooks
+        useData.tsx
+        - A cleaner way to use our appContext (defined above)
+
+    layouts
+
+    pages
+
+    types

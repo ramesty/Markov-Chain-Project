@@ -15,12 +15,30 @@ export type ApiResponseItem = {
   random_walk: (string | number)[];
 };
 
+export const emptyApiResponseItem: ApiResponseItem = {
+  transition_matrix: {
+    flat: { flat: 0, down: 0, "strong down": 0, up: 0, "strong up": 0 },
+    down: { flat: 0, down: 0, "strong down": 0, up: 0, "strong up": 0 },
+    "strong down": { flat: 0, down: 0, "strong down": 0, up: 0, "strong up": 0 },
+    up: { flat: 0, down: 0, "strong down": 0, up: 0, "strong up": 0 },
+    "strong up": { flat: 0, down: 0, "strong down": 0, up: 0, "strong up": 0 },
+  },
+  steady_state_vector: {
+    flat: 0,
+    down: 0,
+    "strong down": 0,
+    up: 0,
+    "strong up": 0,
+  },
+  random_walk: [],
+};
+
 export type ApiResponse = [ApiResponseItem, string];
 
 
 // Define context type
 export type DataContextType = {
-  data: ApiResponseItem | null;
+  data: ApiResponseItem;
   loading: boolean;
   error: string | null;
   showError: boolean | null;

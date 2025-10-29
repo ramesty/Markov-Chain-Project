@@ -1,6 +1,6 @@
-import type { ApiResponse } from "../types/api";
+import type { ApiResponse, ApiResponseItem } from "../types/apiTypes";
 
-export const fetchDataFromApi = async (url: string): Promise<ApiResponse> => {
+export const fetchDataFromApi = async (url: string): Promise<ApiResponseItem> => {
   const res = await fetch(url);
   const json = await res.json();
 

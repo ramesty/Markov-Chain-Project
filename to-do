@@ -18,3 +18,10 @@ Once I have communicating containers, I can look to deploy onto the cloud
 Frontend ↔ Backend
 Your Vite app will make HTTP requests to the backend (e.g., https://api.example.com/data)
 They can live on different services as long as the backend allows cross-origin requests (CORS headers)
+
+Frontend
+Should make the matrix empty initially, not sure if I should start with empty matrix and vector values.
+When we recieve a response from the server, we rerender using useeffect I believe. 
+Also need to figure out a colour scheme that I like.
+Need to pass in my transition matrix as a prop, as well as the steady state vector
+Lastly, add custom tailwind classes so that the classes are not so long

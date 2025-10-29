@@ -1,6 +1,6 @@
 import { useState, createContext } from "react";
 import type { ReactNode } from "react";
-import type { ApiResponse, DataContextType } from "../types/api";
+import { emptyApiResponseItem, type ApiResponseItem, type DataContextType } from "../types/apiTypes";
 import { fetchDataFromApi } from "../api/fetchStockData";
 
 const DataContext = createContext<DataContextType | undefined>(undefined);
@@ -9,7 +9,7 @@ type DataProviderProps = { children: ReactNode };
 
 export const DataProvider = ({ children }: DataProviderProps) => {
   
-    const [data, setData] = useState<ApiResponse | null>(null);
+    const [data, setData] = useState<ApiResponseItem>(emptyApiResponseItem);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [showError, setShowError] = useState(true);

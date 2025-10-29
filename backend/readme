@@ -13,11 +13,3 @@ How to run:
 Backend:
 uvicorn app.main:app --host 0.0.0.0 --port 8000
 to test api endpoints after running: http://localhost:8000/docs#/
-
-Work I just did:
-- created a context called DataProvider that will be used by all my components
-- created a custom hook that uses this context and throughs an error if it is not there
-- created types that I need for my context (API response, my DataCOntext type)
-
-Need to be able to send and receive data, merge these changes into the actual components
-that are calling them. Right now we created a dummy page
